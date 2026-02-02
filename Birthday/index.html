@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Niti Singh Verma ❤️</title>
+
+<style>
+body{
+  margin:0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg,#ffd6e8,#fff1f7);
+  text-align:center;
+}
+
+/* Heading */
+h1{
+  color:#ff2f92;
+  margin-top:25px;
+}
+
+/* Swipe hint */
+.hint{
+  font-size:14px;
+  color:#ff5fa2;
+  margin-top:5px;
+}
+
+/* Slider */
+.slider{
+  margin:30px auto;
+  width:280px;
+  background:white;
+  padding:15px;
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.slider img{
+  width:100%;
+  height:280px;
+  object-fit:cover;
+  border-radius:15px;
+}
+
+.message{
+  margin-top:15px;
+  font-size:1.15em;
+  color:#ff2f7a;
+  min-height:70px;
+}
+
+/* Cake */
+.cakeBox{
+  margin:40px auto;
+}
+
+#cake{
+  width:200px;
+  cursor:pointer;
+}
+
+#cakeText{
+  margin-top:10px;
+  font-size:1.1em;
+  color:#ff2f92;
+}
+
+/* Music button */
+#musicBtn{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 12px 18px;
+  font-size: 14px;
+  background: #ff2f92;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Footer */
+.footer{
+  margin:40px 0;
+  font-size:1.1em;
+  color:#ff4f9a;
+}
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+<button id="musicBtn">Play Music 🎶</button>
+<audio id="bgMusic" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<!-- TITLE -->
+<h1>Happy Birthday Niti Singh Verma ❤️</h1>
+<div class="hint">👉 Swipe left for next memory</div>
+
+<!-- SLIDER -->
+<div class="slider" id="slider">
+  <img id="slideImg" src="photo1.jpg">
+  <div class="message" id="slideMsg">
+    Yahan apna pehla message likh 💖
+  </div>
+</div>
+
+<!-- CAKE -->
+<div class="cakeBox">
+  <img src="cake.png" id="cake">
+  <div id="cakeText">🎂 Tap the cake to blow the candle 💨</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  Always yours,<br><strong>Prince</strong>
+</div>
+
+<script>
+/* PHOTOS & MESSAGES */
+const photos = [
+  "photo1.jpg",
+  "photo2.jpg",
+  "photo3.jpg",
+  "photo4.jpg",
+  "photo5.jpg"
+];
+
+const messages = [
+  "Yahan apna pehla message likh 💖",
+  "Yahan doosra message ✨",
+  "Yahan teesra message 😊",
+  "Yahan chautha message ❤️",
+  "Happy Birthday meri jaan 🎂💐"
+];
+
+let index = 0;
+const img = document.getElementById("slideImg");
+const msg = document.getElementById("slideMsg");
+
+/* SWIPE */
+let startX = 0;
+const slider = document.getElementById("slider");
+
+slider.addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+});
+
+slider.addEventListener("touchend", e => {
+  let endX = e.changedTouches[0].clientX;
+  if(startX - endX > 50){
+    nextSlide();
+  }
+});
+
+function nextSlide(){
+  index = (index + 1) % photos.length;
+  img.src = photos[index];
+  msg.innerText = messages[index];
+}
+
+/* MUSIC */
+const music = document.getElementById("bgMusic");
+const btn = document.getElementById("musicBtn");
+
+btn.addEventListener("click", () => {
+  if (music.paused) {
+    music.play();
+    btn.innerText = "Pause Music ⏸️";
+  } else {
+    music.pause();
+    btn.innerText = "Play Music 🎶";
+  }
+});
+
+/* CAKE TAP */
+const cake = document.getElementById("cake");
+const cakeText = document.getElementById("cakeText");
+
+cake.addEventListener("click", () => {
+  cake.style.opacity = "0.7";
+  cakeText.innerText = "💖 Candle blown! Happy Birthday Niti 💖";
+});
+</script>
+
+</body>
+</html>
